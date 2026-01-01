@@ -32,7 +32,7 @@ def extract_transform_load(con: duckdb.DuckDBPyConnection, partition_key: str) -
         json_extract(data, '$.volumeUsd')::DOUBLE AS volumeUsd,
         json_extract(data, '$.tradingPairs')::INTEGER AS tradingPairs,
         json_extract(data, '$.socket')::BOOLEAN AS socket,
-        regexp_replace(json_extract(data, '$.exchangeUrl')::VARCHAR, '"', '', 'g') AS nexchangeUrl,
+        regexp_replace(json_extract(data, '$.exchangeUrl')::VARCHAR, '"', '', 'g') AS exchangeUrl,
         json_extract(data, '$.updated')::BIGINT AS updated
         FROM exchange_data) TO './processed_data/exchange_data/{partition_key}.csv' (FORMAT csv, HEADER, DELIMITER ',')
 
